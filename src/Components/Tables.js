@@ -11,13 +11,18 @@ const Tables = ({users,  auth}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [userPerPage, setUserPerPage] = useState(5); 
     
-    // get current user 
+    // get current users 
     const indexOfLastUser = currentPage * userPerPage; 
     const indexOfFirstUser = indexOfLastUser - userPerPage; 
     const currentUser  = users.slice(indexOfFirstUser, indexOfLastUser); 
 
+    // change page number 
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    //  sliced data for the table 
     const [data, setData] = useState(currentUser);
     
+    // sorting logic 
     const [order , setOrder ] = useState("ASC"); 
     const sorting = (col) => {
         
@@ -38,8 +43,7 @@ const Tables = ({users,  auth}) => {
         }
     }
 
-    // change page number 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    
     
 
     return (
@@ -86,4 +90,3 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps)(Tables);
-
