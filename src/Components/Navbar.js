@@ -1,9 +1,11 @@
 import React from 'react'
+import styles from "./Navbar.module.css";
 
 import { connect } from "react-redux"
 import { useDispatch } from "react-redux";
 import { logout } from "../store/Action/auth"
 import { useHistory} from "react-router-dom";
+import { Link } from "react-router-dom"
 
 const Navbar = ({auth}) => {
     const dispatch = useDispatch();
@@ -19,8 +21,9 @@ const Navbar = ({auth}) => {
 
     return (
         
-        <nav className="navbar navbar-expand-lg navbar-light ml-auto bg-light  ">
-        {auth.userName && <a href="/user" className="navbar-brand">{auth.userName}</a>}
+        <nav className="navbar navbar-expand-lg navbar-light ml-auto bg-light " >
+        {auth.userName && <a href="/user" className="navbar-brand" style ={{marginLeft: "50px"}}>{auth.userName}</a>}
+        {!auth.userName && <a  className="navbar-brand" style ={{marginLeft: "50px"}}>Assignment</a>}
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -31,6 +34,7 @@ const Navbar = ({auth}) => {
           </ul>
           
             {auth.isLogin && <button className="btn btn-outline-success my-2 my-sm-0  mx-5" onClick = {clickHandler} type="submit">Logout</button>}
+            {!auth.isLogin && <div><Link to = "/login" ><button className="btn btn-outline-success my-2 my-sm-0  mx-5" onClick = {clickHandler} type="submit">Login</button> </Link></div>}
           
         </div>
       </nav>

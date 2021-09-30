@@ -1,0 +1,25 @@
+.header{
+    background-color: rgb(242, 242, 247);
+    width: 50%; 
+    margin-left: 50px;
+    box-shadow: 3px 3px 6px #b8b9be, -3px -3px 6px #fff;
+    border-radius: 5px;
+    color: black
+}
+
+.inputForm{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.inputForm1{
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top:20px;
+}
+
+.button{
+    outline: none;
+    border:none;
+    margin-left:5px;
+    
+}
