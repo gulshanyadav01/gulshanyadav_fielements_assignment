@@ -3,7 +3,7 @@ import { LOGOUT } from '../Action/Types'
 
 const initialState = {
 
-    isLogin : false,
+    isLogin : true,
     userName: ''
 
 }

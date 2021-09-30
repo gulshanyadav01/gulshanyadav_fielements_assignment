@@ -8,21 +8,23 @@ const Tables = ({users,  auth}) => {
     
     //pagination logic 
 
+    
     const [currentPage, setCurrentPage] = useState(1);
-    const [userPerPage, setUserPerPage] = useState(5); 
-    
-    // get current users 
-    const indexOfLastUser = currentPage * userPerPage; 
-    const indexOfFirstUser = indexOfLastUser - userPerPage; 
-    const currentUser  = users.slice(indexOfFirstUser, indexOfLastUser); 
+    const [userPerPage] = useState(2); 
 
-    // change page number 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const indexOfLastUser = currentPage * userPerPage;
+    const indexOfFirstUser = indexOfLastUser - userPerPage;
+    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
 
-    //  sliced data for the table 
-    const [data, setData] = useState(currentUser);
-    
+    const [data, setData] = useState(currentUsers);
+
+// Change page
+  const paginate = (pageNumber) => {
+     setCurrentPage(pageNumber)
+     setData(currentUsers); 
+  }
     // sorting logic 
+    // console.log(currentUsers)
     const [order , setOrder ] = useState("ASC"); 
     const sorting = (col) => {
         
@@ -43,7 +45,7 @@ const Tables = ({users,  auth}) => {
         }
     }
 
-    
+    // const display = ()
     
 
     return (
