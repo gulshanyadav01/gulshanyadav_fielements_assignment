@@ -1,6 +1,4 @@
 import React from 'react'
-import styles from "./Navbar.module.css";
-
 import { connect } from "react-redux"
 import { useDispatch } from "react-redux";
 import { logout } from "../store/Action/auth"
@@ -22,8 +20,8 @@ const Navbar = ({auth}) => {
     return (
         
         <nav className="navbar navbar-expand-lg navbar-light ml-auto bg-light " >
-        {auth.userName && <a href="/user" className="navbar-brand" style ={{marginLeft: "50px"}}>{auth.userName}</a>}
-        {!auth.userName && <a  className="navbar-brand" style ={{marginLeft: "50px"}}>Assignment</a>}
+        {auth.userName && <div><Link to="/user" className="navbar-brand" style ={{marginLeft: "50px"}}>{auth.userName}</Link></div>}
+        {!auth.userName && <div><Link to = "/user"  className="navbar-brand" style ={{marginLeft: "50px"}}>Assignment</Link></div>}
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>

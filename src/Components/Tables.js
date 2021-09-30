@@ -2,32 +2,46 @@ import React, {useState} from 'react'
 import {connect } from "react-redux"
 import { Table } from "react-bootstrap";
 import { Redirect } from 'react-router';
-
-const login  = true; 
-
+import Pagination from './Pagination';
 const Tables = ({users,  auth}) => {
-    
-    const [data, setData] = useState([users]); 
-    const [order , setOrder ] = useState("ASC"); 
 
+    
+    //pagination logic 
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [userPerPage, setUserPerPage] = useState(5); 
+    
+    // get current user 
+    const indexOfLastUser = currentPage * userPerPage; 
+    const indexOfFirstUser = indexOfLastUser - userPerPage; 
+    const currentUser  = users.slice(indexOfFirstUser, indexOfLastUser); 
+
+    const [data, setData] = useState(currentUser);
+    
+    const [order , setOrder ] = useState("ASC"); 
     const sorting = (col) => {
-        console.log("this is sorting")
+        
         if(order === 'ASC'){
-            const sorted = [...users].sort((a,b) => 
+            const sorted = [...data].sort((a,b) => 
                 a[col] > b[col] ? 1 : -1
             ); 
-            setData([sorted]);
+            setData(sorted);
             setOrder("DSC"); 
         }
 
         if(order === 'DSC'){
-            const sorted = [...users].sort((a,b) => 
+            const sorted = [...data].sort((a,b) => 
                 a[col] < b[col] ? 1 : -1
             ); 
-            setData([sorted])
+            setData(sorted)
             setOrder("ASC"); 
         }
     }
+
+    // change page number 
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    
+
     return (
         <div className = "container mt-5">
             {auth.isLogin  ? (<div> <Table striped bordered hover>
@@ -40,7 +54,7 @@ const Tables = ({users,  auth}) => {
                     </thead>
                 
                     <tbody>
-                    {data[0].map((d) => {
+                    {data.map((d) => {
                         return(
                             <tr key = {d.id}>
                             <td>{d.id}</td>
@@ -56,12 +70,15 @@ const Tables = ({users,  auth}) => {
             :(<div><Redirect to = "/login"/></div>)
 
         }
+        <div>
+            <Pagination userPerPage = {userPerPage} totalUser = {users.length} paginate = {paginate} />
+        </div>
         </div>
     )
 }
 const mapStateToProps = (state) => { 
     return {
-        users : state.user.User,
+        
         auth: state.auth
         
     }

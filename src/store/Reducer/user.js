@@ -9,7 +9,7 @@ const  Users = (state = initialState, action) =>  {
 
     switch(action.type){
         case GET_USERS:
-            console.log("this is reducer file")
+            
             return{
                 ...state,
                 User: action.payload

@@ -9,10 +9,10 @@ class User extends Component{
         this.props.getUsers(); 
     }
     render(){
-         
+         console.log(this.props.users);
         return(
             <div>
-                <Table />
+                <Table users = {this.props.users}/>
             </div>
         )
     }

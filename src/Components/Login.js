@@ -37,7 +37,7 @@ const Login = (props) => {
             </div>
             <div className="form-group w-50  p-3 " className = {styles.inputForm1}>
                 <label style ={{marginTop:"10px", padding:"5px"}}>PASSWORD</label>
-                <input type="password" class="form-control" name = "password"  placeholder="Password" onChange = {(e) => {setPassword(e.target.value)}}/>
+                <input type="password" class="form-control" name = "password"  placeholder="Password" onChange = {(e) => {setPassword(e.target.value)}} />
             </div>
         
             <button type="submit" class="btn btn-primary mx-4 my-3 px-4 py-2" clasName = {styles.button}>Submit</button>
